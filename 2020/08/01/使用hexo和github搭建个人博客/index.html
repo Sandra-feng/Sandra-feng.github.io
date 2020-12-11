@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Sandra_feng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="使用hexo和github搭建个人博客 前言 什么是hexo，hexo应该说是静态博客生成器，用户通过写markdown文档的方式发布博文，hexo程序将markdown文档转换成静态页面。 准备工作： 注册github账号，网站：https:&#x2F;&#x2F;github.com&#x2F; 下载node.js，node.js 是一个基于 Chrome V8 引擎的 JavaScirpt 运行环境。网站：http:&#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo和github搭建个人博客">
+<meta property="og:url" content="https://sandra-feng.github.io/2020/08/01/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="Sandra_feng">
+<meta property="og:description" content="使用hexo和github搭建个人博客 前言 什么是hexo，hexo应该说是静态博客生成器，用户通过写markdown文档的方式发布博文，hexo程序将markdown文档转换成静态页面。 准备工作： 注册github账号，网站：https:&#x2F;&#x2F;github.com&#x2F; 下载node.js，node.js 是一个基于 Chrome V8 引擎的 JavaScirpt 运行环境。网站：http:&#x2F;&#x2F;">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595734594079.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595735533036.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595987767002.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988082451.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988542163.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988669439.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988816493.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989635009.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989704835.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989748046.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989943511.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595991123330.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595991315207.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1596003198171.png">
+<meta property="article:published_time" content="2020-08-01T12:43:42.582Z">
+<meta property="article:modified_time" content="2020-08-11T01:59:02.778Z">
+<meta property="article:author" content="Sandra feng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595734594079.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://Sandra-feng.github.io/2020/08/01/使用hexo和github搭建个人博客/"/>
+
+
+
+
+
+  <title>使用hexo和github搭建个人博客 | Sandra_feng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sandra_feng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Sandra-feng.github.io/2020/08/01/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sandra feng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandra_feng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用hexo和github搭建个人博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-01T20:43:42+08:00">
+                2020-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用hexo和github搭建个人博客"><a href="#使用hexo和github搭建个人博客" class="headerlink" title="使用hexo和github搭建个人博客"></a>使用hexo和github搭建个人博客</h1><hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>什么是hexo，hexo应该说是静态博客生成器，用户通过写markdown文档的方式发布博文，hexo程序将markdown文档转换成静态页面。</li>
+<li>准备工作：<ol>
+<li>注册github账号，网站：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></li>
+<li>下载node.js，node.js 是一个基于 Chrome V8 引擎的 JavaScirpt 运行环境。网站：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a></li>
+</ol>
+</li>
+</ul>
+<p>图片点击查看：</p>
+<p><a href="https://img04.sogoucdn.com/app/a/100520146/2ca4b2bc94296bbd204e23df73ed8256" target="_blank" rel="noopener">https://img04.sogoucdn.com/app/a/100520146/2ca4b2bc94296bbd204e23df73ed8256</a></p>
+<p>说明node已安装完成</p>
+<p>安装git:<a href="https://cdn.npm.taobao.org/dist/git-for-windows/v2.28.0-rc2.windows.1/Git-2.28.0-rc2-64-bit.exe" target="_blank" rel="noopener">https://cdn.npm.taobao.org/dist/git-for-windows/v2.28.0-rc2.windows.1/Git-2.28.0-rc2-64-bit.exe</a></p>
+<p>安装完成后输入命令： ssh-keygen -t rsa -C “github上注册的邮箱”然后不断回车。</p>
+<p><a href="https://img04.sogoucdn.com/app/a/100520146/ea2d1b015044f137b0f2ef09cdd36360" target="_blank" rel="noopener">https://img04.sogoucdn.com/app/a/100520146/ea2d1b015044f137b0f2ef09cdd36360</a></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595734594079.png" alt="1595734594079"></p>
+<h2 id="githubSSH的配置"><a href="#githubSSH的配置" class="headerlink" title="githubSSH的配置"></a>githubSSH的配置</h2><p>进入github中的settings里的SSH and GPG keys</p>
+<p>新建一个SSH keys，自己任意命名，然后用记事本打开c盘里的id.rsa.pub文件复制粘贴在那个超大框中，确定即可</p>
+<p><a href="https://img02.sogoucdn.com/app/a/100520146/eae139b76e10ca1812f0b1efbcfd51a3" target="_blank" rel="noopener">https://img02.sogoucdn.com/app/a/100520146/eae139b76e10ca1812f0b1efbcfd51a3</a></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595735533036.png" alt="1595735533036"></p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>创建一个blog文件夹，鼠标右击git bash here输入命令</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>如果有下报错</p>
+<p><a href="https://img03.sogoucdn.com/app/a/100520146/c92388463a55edb24e5306879e901ec4" target="_blank" rel="noopener">https://img03.sogoucdn.com/app/a/100520146/c92388463a55edb24e5306879e901ec4</a></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595987767002.png" alt="1595987767002"></p>
+<p>解决方法：删除C盘用户下的nmprc文件</p>
+<p>再运行安装hexo命令又出现如此报错：</p>
+<p><a href="https://img01.sogoucdn.com/app/a/100520146/4cc35539ab64ffb10c5482e7d436fb19" target="_blank" rel="noopener">https://img01.sogoucdn.com/app/a/100520146/4cc35539ab64ffb10c5482e7d436fb19</a></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988082451.png" alt="1595988082451"></p>
+<p>因为之前安装过一次博客所以文件夹中已经存在hexo,只要把c盘中的npm文件夹删掉即可</p>
+<p><a href="https://img02.sogoucdn.com/app/a/100520146/d5d645a0fdb763b38aca95dcd362555c" target="_blank" rel="noopener">https://img02.sogoucdn.com/app/a/100520146/d5d645a0fdb763b38aca95dcd362555c</a></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988542163.png" alt="1595988542163"></p>
+<p>安装镜像（阿里）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br><span class="line">&#x2F;&#x2F;查看安装是否成功</span><br><span class="line">hexo -v</span><br><span class="line">cnpm -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988669439.png" alt="1595988669439"></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595988816493.png" alt="1595988816493"></p>
+<h2 id="博客搭建"><a href="#博客搭建" class="headerlink" title="博客搭建"></a>博客搭建</h2><p>输入命令，init后面跟的是自己安装博客的文件夹，要自己新建一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init boke</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：会在那个文件夹下出现这些文件</p>
+<p><a href="https://img01.sogoucdn.com/app/a/100520146/145064e719656fd6362a0950e33230f0" target="_blank" rel="noopener">https://img01.sogoucdn.com/app/a/100520146/145064e719656fd6362a0950e33230f0</a></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989635009.png" alt="1595989635009"></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989704835.png" alt="1595989704835"></p>
+<p>进入该文件夹</p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989748046.png" alt="1595989748046"></p>
+<p>输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595989943511.png" alt="1595989943511"></p>
+<p><a href="https://img04.sogoucdn.com/app/a/100520146/e8c5b3dd6998a06b681df0b6c2d989d9" target="_blank" rel="noopener">https://img04.sogoucdn.com/app/a/100520146/e8c5b3dd6998a06b681df0b6c2d989d9</a></p>
+<p>下载sublime或者notepad</p>
+<p>sublime的下载链接：</p>
+<p>链接：<a href="https://pan.baidu.com/s/1fUp_YX7RELY9RCpNgO6gJQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1fUp_YX7RELY9RCpNgO6gJQ</a><br>提取码：01t2<br>复制这段内容后打开百度网盘手机App，操作更方便哦</p>
+<p>notepad++可在官网下载</p>
+<p>下载完直接可使用</p>
+<p>用文档编辑器打开_config.yml文件编辑信息，换成中文，名字更换，切记保存。</p>
+<p><a href="https://img01.sogoucdn.com/app/a/100520146/6d9640706cca3ecc505e22aa8270ac1e" target="_blank" rel="noopener">https://img01.sogoucdn.com/app/a/100520146/6d9640706cca3ecc505e22aa8270ac1e</a></p>
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595991123330.png" alt="1595991123330"></p>
+<p>关闭后在博客文件夹下运行以下命令(三个命令任意其中一个)最后打开本地博客。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1595991315207.png" alt="1595991315207"></p>
+<p><a href="https://img03.sogoucdn.com/app/a/100520146/3d091155614c5fda153181dd9feffeb6" target="_blank" rel="noopener">https://img03.sogoucdn.com/app/a/100520146/3d091155614c5fda153181dd9feffeb6</a></p>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>在github上创建一个仓库，创建的名字要用github用户名.github.io，否则会出错</p>
+<p>安装部署插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<p>在配置文件下执行以下操作，文档末尾type后面空一格写git，添加repo:把仓库ssh的位置粘贴复制在后面。</p>
+<p>然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CLenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1596003198171.png" alt="1596003198171"></p>
+<p><a href="https://img01.sogoucdn.com/app/a/100520146/a3def01175042c3c24ae03c60008cb86" target="_blank" rel="noopener">https://img01.sogoucdn.com/app/a/100520146/a3def01175042c3c24ae03c60008cb86</a></p>
+<p>在github上找到自己的项目网站，打开即可</p>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>在hexo官网的主题界面选择自己喜欢的主题，根据readme文档进行修改即可</p>
+<p>详细教程看官网：<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Sandra feng wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward.png" alt="Sandra feng 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward.png" alt="Sandra feng 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/29/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E8%80%8C%E4%B8%8B%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/" rel="prev" title="计算机网络自顶而下方法笔记">
+                计算机网络自顶而下方法笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Sandra feng</p>
+              <p class="site-description motion-element" itemprop="description">业，精于勤，荒于嬉</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Sandra-feng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1729745257@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用hexo和github搭建个人博客"><span class="nav-number">1.</span> <span class="nav-text">使用hexo和github搭建个人博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#githubSSH的配置"><span class="nav-number">1.2.</span> <span class="nav-text">githubSSH的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.3.</span> <span class="nav-text">安装hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客搭建"><span class="nav-number">1.4.</span> <span class="nav-text">博客搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到github"><span class="nav-number">1.5.</span> <span class="nav-text">部署到github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">1.6.</span> <span class="nav-text">更换主题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandra feng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机网络," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Sandra_feng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第一章计算机网络和因特网因特网 具体构成描述：互联了遍及全世界设备的网络，连接因特网的设备叫做主机或端系统，端系统通过通信链路和分组交换机连接到一起，通信链路有很多种物理媒体构成（电缆、光纤、无线电频谱……）速率以bps为单位。发送端系统将数据分段，加工形成的信息成为分组，分组通过网络发送到目的端系统。端系统通过因特网服务提供商（ISP）接入因特网。每个ISP是由一个由多个分组交换机和多段通信链路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络自顶而下方法笔记">
+<meta property="og:url" content="https://sandra-feng.github.io/2020/08/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E8%80%8C%E4%B8%8B%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Sandra_feng">
+<meta property="og:description" content="第一章计算机网络和因特网因特网 具体构成描述：互联了遍及全世界设备的网络，连接因特网的设备叫做主机或端系统，端系统通过通信链路和分组交换机连接到一起，通信链路有很多种物理媒体构成（电缆、光纤、无线电频谱……）速率以bps为单位。发送端系统将数据分段，加工形成的信息成为分组，分组通过网络发送到目的端系统。端系统通过因特网服务提供商（ISP）接入因特网。每个ISP是由一个由多个分组交换机和多段通信链路">
+<meta property="article:published_time" content="2020-08-10T12:05:02.000Z">
+<meta property="article:modified_time" content="2020-08-10T12:44:56.678Z">
+<meta property="article:author" content="Sandra feng">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://Sandra-feng.github.io/2020/08/10/计算机网络自顶而下方法笔记/"/>
+
+
+
+
+
+  <title>计算机网络自顶而下方法笔记 | Sandra_feng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sandra_feng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Sandra-feng.github.io/2020/08/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E8%80%8C%E4%B8%8B%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sandra feng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandra_feng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络自顶而下方法笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-10T20:05:02+08:00">
+                2020-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="第一章计算机网络和因特网"><a href="#第一章计算机网络和因特网" class="headerlink" title="第一章计算机网络和因特网"></a>第一章计算机网络和因特网</h3><h4 id="因特网"><a href="#因特网" class="headerlink" title="因特网"></a>因特网</h4><ol>
+<li>具体构成描述：互联了遍及全世界设备的网络，连接因特网的设备叫做主机或端系统，端系统通过通信链路和分组交换机连接到一起，通信链路有很多种物理媒体构成（电缆、光纤、无线电频谱……）速率以bps为单位。发送端系统将数据分段，加工形成的信息成为分组，分组通过网络发送到目的端系统。端系统通过因特网服务提供商（ISP）接入因特网。每个ISP是由一个由多个分组交换机和多段通信链路组成的网络。不同的ISP为端系统提供不同的网络接入。TCP和IP是因特网中两个重要的协议，IP协议定义了路由器和端系统的发送接收的分组方式，因特网的主要协议统称为TCP/IP协议。因特网工程任务组（IETF)定义的标准文档被称为请求评论（RFC）RFC定义了诸如IP、TCP、HTTP、SMTP这样的协议。公司政府使用的专用网络成为内联网。</li>
+<li>服务描述：与因特网相连的端系统提供了一个应用程序编程接口（API)，API规定了运行在一个端系统上的软件请求因特网基础设施向运行在另一个端系统上的软件交付数据的方式。因特网是一种基础设施，新的应用开发程序在其上不断的被发明和设置。</li>
+<li>协议：协议核心“提问和回答”，网络协议类似于人类协议，交换报文和采取行动的实体是设备的硬件或软件组件。因特网中到处运行这协议。</li>
+</ol>
+<h4 id="网络边缘"><a href="#网络边缘" class="headerlink" title="网络边缘"></a>网络边缘</h4><p>主机有时候有进一步分为两类：客户机（client）和服务器（server）。客户机发送数据，服务器接收数据。</p>
+<p>在网络软件的上下文中，客户机和服务器有另一种定义，<strong>客户机程序（client program）</strong>是运行在一个端系统上的程序，它发出请求，并从运行在另一个端系统上的<strong>服务器程序（server program）</strong>接收服务。</p>
+<p>客户机-服务器因特网应用程序是<strong>分布式应用程序（distributed application）.</strong></p>
+<p>还有应用程序是P2P对等应用程序，其中的端系统互相作用并运行执行客户机和服务器功能的程序，例如因特网电话的通信会话。</p>
+<p>接入网：住宅接入、公司接入、无线接入</p>
+<p>物理媒体：<strong>双绞铜线</strong>一般用于电话网，比较传统。<strong>同轴电缆</strong>具有高比特速率，<strong>同轴电缆</strong>能被用作引导式共享媒体，许多端系统可以直接和电缆相连，而且所有端系统都能接收其他端系统发送的东西。<strong>光缆</strong>是跨海链路的首选媒体。<strong>陆地无线电信道</strong>承载电磁频谱中的信号，因此不需要安装物理线路。<strong>卫星无线电信道</strong>同步卫星和低地球轨道卫星。</p>
+<h4 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h4><ol>
+<li>网络核心，即互联了<strong>因特网端系统的分组交换机</strong>和<strong>链路的网状网络</strong>。</li>
+<li>通过网络链路和交换机移动数据有两种基本方法：<strong>电路交换（circuit switching）</strong>和<strong>分组交换（packet swiitching）。</strong></li>
+<li><strong>电路交换网络</strong>中，沿着端系统通信路径，为端系统之间通信所提供的资源在通信会话期间会被预留。例子有电话网络。电路交换效率低。</li>
+<li><strong>分组交换网络</strong>的突出优点是可以在一条电路上同时开放多条虚电路，为多个用户同时使用，网络具有<a href="https://baike.baidu.com/item/动态路由" target="_blank" rel="noopener">动态路由</a>功能和先进的误码纠错功能，网络性能最佳。分组的包里面有目的地址，路由器有一个转发表，记录着转发地址应该转到哪个路由器去。</li>
+<li>ISP和因特网主干：互联网提供服务商（ISP）住宅电缆和DSL网络、拨号接入网络和无线接入网络、使用LAN公司和大学的ISP位于层次结构的底层，该层次结构的最顶层是数量数量相对较少的第一层ISP。<strong>第一层ISP特性</strong>为直接与其他的ISP相连，与大量的第二层ISP和其他客户网络相连，覆盖国际区域。第一层也称为因特网主干网络。<strong>第二层ISP</strong>通常具有区域性和国家性覆盖。并且非常重要的地方仅与少数第一层ISP相连。第二层ISP被称为是他所连接的第一层ISP的客户 ，第一层ISP是相对于客户而言的提供商。在一个ISP网络中，某ISP与其他ISP相连的接点被称为汇集点。</li>
+</ol>
+<h4 id="分组交换网中的时延、丢包和吞吐量"><a href="#分组交换网中的时延、丢包和吞吐量" class="headerlink" title="分组交换网中的时延、丢包和吞吐量"></a>分组交换网中的时延、丢包和吞吐量</h4><p>时延类型：处理时延，排队时延，传输时延，传播时延，传输时延和传播时延比较。<strong>节点总时延 = 节点处理时延 + 排队时延 + 传输时延 + 传播时延</strong></p>
+<p>端到端时延：假定在源主机和目的主机之间有N-1台路由器，并且该网络是无拥塞的（因此排队时延是微不足道的），处理时延为dproc，每台路由器和源主机的输出速率是 R bps，每条链路的传播时延是dprop，节点时延累加起来得到端到端时延dend-end = N（dproc + dtrans + dprop）         dtrans= 分组长度L /R。</p>
+<p><strong>Traceroute程序</strong>，能够在任何因特网主机上运行。当用户指定一个目的主机名字时，元主机中的改程序朝着该目的地发送多个特殊分组之一时，它向源回送一个短报文，该报文包括该路由器的名字和地址。RFC1393描述了Traceroute。</p>
+<p><strong>吞吐量：</strong>吞吐量分为<strong>瞬时吞吐量（instancous throughput）</strong>和<strong>平均吞吐量（average throughput）</strong>，我们可以把他们类比为以前物理学过的瞬时速度和平均速度。因特网对吞吐量的限制因素通常是接入网，但有时候也会是核心的公共链路。</p>
+<p>吞吐量取决于数据流过的链路的传输速率，但是也取决于干扰流量。</p>
+<p>瞬时吞吐量是主机B接受到该文件的一个速率，平均吞吐量是所有比特F/T秒，即F/T bps。</p>
+<p>对于某些应用程序（譬如因特网电话），希望他们具有低时延，并保持高于某一阈值的一致的瞬时吞吐量，对于其他应用程序（譬如文件传输等等），时延不是很重要，但是希望能具有尽可能高的吞吐量。</p>
+<p>吞吐量：单位时间内通过某个网络（或信道、接口）的数据量。在确定了吞吐量之后，我们现在近似地得到从服务器到客户机传输一个F比特的大文件所需要的时间是F/min{R, R,}。具体来说，假定你正在下载一个F =32 x 10比特的MP3文件，服务器的传输速率为R.= 2 Mbps,接人链路的传输速率为R. =1 Mbps,则传输该文件所需的时间是32 s。 </p>
+<h4 id="协议层次和它服务的类型"><a href="#协议层次和它服务的类型" class="headerlink" title="协议层次和它服务的类型"></a>协议层次和它服务的类型</h4><ol>
+<li><p>协议分层：应用层，运输层，网络层，链路层，物理层，IOS模型。</p>
+<p>各层的所有协议被称为协议栈</p>
+<img src = 'https://ftp.bmp.ovh/imgs/2020/08/772e16123c7e3cc8.png' />
+</li>
+<li><p>报文、报文段、数据报和帧</p>
+<p>如图1-20所示，<br>链路层交换机实现了第一层和第二层，路由器实现了第一.层到第三层。例如，这意味着因特.<br>网路由器能够实现IP协议(一种第三层协议)，而链路层交换机则不能。我们将在后面看到，<br>尽管链路层交换机不能识别IP地址，但它们能够识别第二层地址，如以太网地址。可以看到主<br>机实现了所有5个层次，这与因特网体系结构将它的复杂性放在网络边缘的观点是一致的。</p>
+<img src = 'https://ftp.bmp.ovh/imgs/2020/08/d6f9e670e88b3b72.png' />
+
+<img src = 'https://ftp.bmp.ovh/imgs/2020/08/5ff9eb45edc4f033.png' />
+
+
+
+</li>
+</ol>
+<h3 id="第二章-应用层"><a href="#第二章-应用层" class="headerlink" title="第二章 应用层"></a>第二章 应用层</h3><h4 id="应用层协议原理"><a href="#应用层协议原理" class="headerlink" title="应用层协议原理"></a>应用层协议原理</h4><p>例如，在Web应用程序中，有两个互相通信的不同的程序:一个是运行在用户主机(桌面机、<br>膝.上机、PDA、蜂窝电话等)上的浏览器程序;另-一个是运行在Web服务器主机上的Web服务<br>器程序。又比如P2P文件共享系统，在参与文件共享的每台主机中都有-一个程序。在这种情况<br>下，每台主机中的这些程序可能都是类似的或相同的。</p>
+<p><strong>网络应用程序体系结构</strong></p>
+<p>应用程序体系结构：由应用程序研发者设计，规定了如何在各种端系统上组织该应用程序。现代网络应用程序中所使用的两种主流体系结构之一：<strong>客户机/服务器体系或对等体系结构</strong>，有一个总是打开的主机成为服务器，它服务于来自于其他称为客户机的主机要求。服务器具有固定的、周知的地址，称为IP地址，所以客户机总能通过向服务器地址发送分组来与其联系。</p>
+<p>在客户机/服务器应用中，常会出现一台服务器主机跟不上其所有客户机请求的情况。例如，一个流行的社会联网站点如果仅有一台服务器来处理所有请求，将很快变得不堪重负。为此，在客户机/服务器体系结构中，常用主机群集(有时称为服务器场(server farm)}创建强大的虚拟服务器。基于客户机/服务器体系结构的应用服务通常是基础设施密集的(infrastrucuture intensive),因为它们要求服务提供商购买、安装和维护服务器场。此外，服务提供商必须支付为了发送和接收到达/来自因特网的数据而不断出现的互联和带宽费用。搜索引擎(如Google).因特网商务( 如Amazon和e-Bay).基于Web的电子邮件(如Yahoo Mail)、<br>社会联网(如MySpace 和Facebook)和视频共享(如YouTube)等流行服务是基础设施密集的，<br>需要投人巨额费用。</p>
+<p>大多数流行的流量密集型应用程序都是P2P体系结构，包括文件分发、文件搜索、因特网电话和IPTV。</p>
+<img src = 'https://ftp.bmp.ovh/imgs/2020/08/7966dbfb981ddad5.png' />
+
+<p><strong>进程通信</strong></p>
+<p>进程通常是由程序、数据、进程控制块组成的。</p>
+<p>在操作系统的术语中，进行通信的实际上是进程(process) 而不是程序进程可以被认为是运行在端系统中的程序。当进程运行在相同的端系统上的时候，它们使用进程间通信机制相互通信。进程间通信的规则由端系统上的操作系统确定。</p>
+<p>不同端系统的进程通过跨越计算机网络交换报文而相互通信。</p>
+<p><strong>可靠数据传输</strong>：确保应用程序的一端发送数据正确的完全的交付应用程序的另一端，如果一个协议提供了这样的确保数据交付服务，就提供了可靠数据传输。</p>
+<p>定时：运输层协议也提供定时保证，如吞吐量保证一样。为了有效性而对数据交付有严格的时间限制。</p>
+<p>安全性：运输层协议也能为应用程序提供一种或多种安全性服务。将对发生进程和接收进程保密，以防发送进程和接收进程以某种方式观察到数据。</p>
+<p><strong>因特网提供运输服务</strong>：因特网（一般来说是TCP和IP网络）上应用使用了两个运输层协议：UDP和TCP，每个协议为调用他们的应用程序提供了不同的服务集合。</p>
+<p>TCP服务，面向连接服务和可靠数据传输服务。1）面向连接服务，使用TCP协议时，在应用层数据报文开始流动之前，其客户机程序和服务器程序之间互相交换运输层控制信息。这个所谓的握手过程提示客户机和服务<br>器做好传输分组的准备。在握手阶段后，就在两个进程的套接字之间建立了一个TCP连接(TCP connection)。 这个连接是全双工的，即连接双方的进程可以在此连接.上同时进行报文收发。当应用程序结束报文发送时，必须拆除该连接。2）可靠数据传输服务：无差错，按适当顺序交付发送数据。3）</p>
+<p>UDP服务：仅提供最小服务。UDP是无连接的，UDP协议提供的是不可靠数据传输服务，接收到的报文可能是不准确的。</p>
+<p>运输层协议服务的4个可能：可靠数据传输、吞吐量、定时和安全性。</p>
+<img src = 'https://ftp.bmp.ovh/imgs/2020/08/5f772845c941693d.png' />
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Sandra feng wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward.png" alt="Sandra feng 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward.png" alt="Sandra feng 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/01/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="next" title="使用hexo和github搭建个人博客">
+                <i class="fa fa-chevron-left"></i> 使用hexo和github搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/02/java/" rel="prev" title="java">
+                java <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Sandra feng</p>
+              <p class="site-description motion-element" itemprop="description">业，精于勤，荒于嬉</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Sandra-feng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1729745257@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一章计算机网络和因特网"><span class="nav-number">1.</span> <span class="nav-text">第一章计算机网络和因特网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#因特网"><span class="nav-number">1.1.</span> <span class="nav-text">因特网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络边缘"><span class="nav-number">1.2.</span> <span class="nav-text">网络边缘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络核心"><span class="nav-number">1.3.</span> <span class="nav-text">网络核心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组交换网中的时延、丢包和吞吐量"><span class="nav-number">1.4.</span> <span class="nav-text">分组交换网中的时延、丢包和吞吐量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协议层次和它服务的类型"><span class="nav-number">1.5.</span> <span class="nav-text">协议层次和它服务的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章-应用层"><span class="nav-number">2.</span> <span class="nav-text">第二章 应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层协议原理"><span class="nav-number">2.1.</span> <span class="nav-text">应用层协议原理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandra feng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
