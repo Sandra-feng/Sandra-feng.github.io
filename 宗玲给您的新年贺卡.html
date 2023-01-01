@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>宗玲祝您-元旦快乐</title>
+</head>
+<style type="text/css">
+body {
+    /* 背景颜色*/
+    background-color: #c6070c;
+    /* 字体颜色 */
+    color: #ffe392;
+    /* 文字居中 */
+    text-align: center;
+}
+table {
+    padding-top: 100px;
+    /* 居中 */
+    margin: auto;
+    /* 宽比例 */
+    width: 50%;
+}
+.pinyin {
+    height: 20px;
+    /* 字母间距 */
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+td {
+    font-size: 158px;
+    text-align: center;
+    font-weight: 700;
+    padding: 0px;
+}
+h2 {
+    margin-top: 15px;
+    margin-bottom: 100px;
+    font-size: 38px;
+    text-transform: uppercase;
+    font-weight: 700;
+    word-spacing: 5px;
+}
+p {
+    font-weight: 700;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+button {
+    background-color: #ef941a;
+    color: #fffbe2;
+    width: 200px;
+    position: relative;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    line-height: 0.5;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+button:hover,
+button:focus {
+    background-color: #efa134;
+}
+button:active {
+    transform: translate(0px, 2px);
+    -webkit-transform: translate(0px, 2px);
+}
+</style>
+<body>
+ 
+<table>
+    <tr>
+        <th class="pinyin" id="pinyin1">yuan</th>
+        <th class="pinyin" id="pinyin2">dan</th>
+        <th class="pinyin" id="pinyin3">kuai</th>
+        <th class="pinyin" id="pinyin4">le</th>
+    </tr>
+    <tr>
+        <td id="jeskson1">元</td>
+        <td id="jeskson2">旦</td>
+        <td id="jeskson3">快</td>
+        <td id="jeskson4">樂</td>
+    </tr>
+</table>
+ 
+<h2 id="dadaEnglish">(元旦快乐)</h2>
+ 
+<button type="button" id="button">
+    <p>点击有惊喜</p>
+</button>
+ 
+<script type="text/javascript">
+var pinyin1 = document.getElementById("pinyin1");
+var pinyin2 = document.getElementById("pinyin2");
+var pinyin3 = document.getElementById("pinyin3");
+var pinyin4 = document.getElementById("pinyin4");
+ 
+var jeskson1 = document.getElementById("jeskson1");
+var jeskson2 = document.getElementById("jeskson2");
+var jeskson3 = document.getElementById("jeskson3");
+var jeskson4 = document.getElementById("jeskson4");
+ 
+var dadaEnglish = document.getElementById("dadaEnglish");
+ 
+var button = document.getElementById("button");
+var random = Math.random();
+ 
+var p1 = [
+    "yuan",
+    "qian",
+    "da",
+    "wan",
+    "cheng",
+    "shen",
+    "xin",
+    "xing"
+];
+ 
+var p2 = [
+    "dan",
+    "tu",
+    "ji",
+    "shi",
+    "guo",
+    "ti",
+    "xiang",
+    "fu"
+];
+ 
+var p3 = [
+    "kuai",
+    "wu",
+    "da",
+    "ru",
+    "feng",
+    "jian",
+    "shi",
+    "mian"
+];
+ 
+var p4 = [
+    "le",
+    "liang",
+    "li",
+    "yi",
+    "shuo",
+    "kang",
+    "cheng",
+    "mian"
+];
+ 
+var dadasC1 = [
+    "元",
+    "前",
+    "大",
+    "萬",
+    "成",
+    "身",
+    "心",
+    "幸"
+];
+ 
+var dadasC2 = [
+    "旦",
+    "兔",
+    "吉",
+    "事",
+    "果",
+    "體",
+    "想",
+    "福"
+];
+ 
+var dadasC3 = [
+    "快",
+    "无",
+    "大",
+    "如",
+    "丰",
+    "健",
+    "事",
+    "绵"
+];
+ 
+var dadasC4 = [
+    "樂",
+    "量",
+    "利",
+    "意",
+    "硕",
+    "康",
+    "成",
+    "绵"
+];
+var dadasE = [
+    "(新的一年天天好心情！)",
+    "(祝所求皆如愿，所行皆坦途！)",
+    "(吉星高照)",
+    "(山河无恙，人间皆安！)",
+    "(Good luck, good health, good cheer, i wish you a happy New Year!)",
+    "(祝您身体健康)",
+    "(祝你成果丰硕)",
+    "(新年胜旧年)"
+];
+pinyin1.textContent = p1[Math.floor(random * p1.length)];
+pinyin2.textContent = p2[Math.floor(random * p2.length)];
+pinyin3.textContent = p3[Math.floor(random * p3.length)];
+pinyin4.textContent = p4[Math.floor(random * p4.length)];
+jeskson1.textContent = dadasC1[Math.floor(random * dadasC1.length)];
+jeskson2.textContent = dadasC2[Math.floor(random * dadasC2.length)];
+jeskson3.textContent = dadasC3[Math.floor(random * dadasC3.length)];
+jeskson4.textContent = dadasC4[Math.floor(random * dadasC4.length)];
+dadaEnglish.textContent = dadasE[Math.floor(random * dadasE.length)];
+var onClick = function() {
+    var random = Math.random();
+    pinyin1.textContent = p1[Math.floor(random * p1.length)];
+    pinyin2.textContent = p2[Math.floor(random * p2.length)];
+    pinyin3.textContent = p3[Math.floor(random * p3.length)];
+    pinyin4.textContent = p4[Math.floor(random * p4.length)];
+    jeskson1.textContent = dadasC1[Math.floor(random * dadasC1.length)];
+    jeskson2.textContent = dadasC2[Math.floor(random * dadasC2.length)];
+    jeskson3.textContent = dadasC3[Math.floor(random * dadasC3.length)];
+    jeskson4.textContent = dadasC4[Math.floor(random * dadasC4.length)];
+    dadaEnglish.textContent = dadasE[Math.floor(random * dadasE.length)];
+}
+ 
+button.addEventListener("click", onClick);
+</script>
+</body>
+</html>
