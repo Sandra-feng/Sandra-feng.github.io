@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>具有自适应微调策略的分层BERT，用于文档分类 | Sandra_feng personal blog</title><meta name="keywords" content="学习记录"><meta name="author" content="Sandra_feng"><meta name="copyright" content="Sandra_feng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="具有自适应微调策略的分层BERT，用于文档分类中科院一区 摘要预训练语言模型(PLMs)已经取得了令人印象深刻的成果，并已成为各种自然语言处理(NLP)任务的重要工具。然而，当文档长度超过PLM的最大可接受长度时，将这些PLM应用于文档分类存在一个限制，因为在这些模型中会截断多余的部分。如果关键字在截断的部分，则模型的性能下降。为了解决这个问题，本文提出了一种带有自适应微调策略的分层BERT (H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="具有自适应微调策略的分层BERT，用于文档分类">
+<meta property="og:url" content="https://sandra-feng.github.io/%E5%85%B7%E6%9C%89%E8%87%AA%E9%80%82%E5%BA%94%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5%E7%9A%84%E5%88%86%E5%B1%82BERT%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB.html">
+<meta property="og:site_name" content="Sandra_feng personal blog">
+<meta property="og:description" content="具有自适应微调策略的分层BERT，用于文档分类中科院一区 摘要预训练语言模型(PLMs)已经取得了令人印象深刻的成果，并已成为各种自然语言处理(NLP)任务的重要工具。然而，当文档长度超过PLM的最大可接受长度时，将这些PLM应用于文档分类存在一个限制，因为在这些模型中会截断多余的部分。如果关键字在截断的部分，则模型的性能下降。为了解决这个问题，本文提出了一种带有自适应微调策略的分层BERT (H">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg">
+<meta property="article:published_time" content="2023-07-29T06:04:21.000Z">
+<meta property="article:modified_time" content="2023-07-29T06:04:21.000Z">
+<meta property="article:author" content="Sandra_feng">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sandra-feng.github.io/%E5%85%B7%E6%9C%89%E8%87%AA%E9%80%82%E5%BA%94%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5%E7%9A%84%E5%88%86%E5%B1%82BERT%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Sandra_feng","link":"链接: ","source":"来源: Sandra_feng personal blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '具有自适应微调策略的分层BERT，用于文档分类',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-29 14:04:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Sandra_feng personal blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2023/07/22/d87b3c27f25f5e68.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Sandra_feng personal blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">具有自适应微调策略的分层BERT，用于文档分类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-29T06:04:21.000Z" title="发表于 2023-07-29 14:04:21">2023-07-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-29T06:04:21.000Z" title="更新于 2023-07-29 14:04:21">2023-07-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="具有自适应微调策略的分层BERT，用于文档分类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="具有自适应微调策略的分层BERT，用于文档分类"><a href="#具有自适应微调策略的分层BERT，用于文档分类" class="headerlink" title="具有自适应微调策略的分层BERT，用于文档分类"></a>具有自适应微调策略的分层BERT，用于文档分类</h1><p>中科院一区</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>预训练语言模型(PLMs)已经取得了令人印象深刻的成果，并已成为各种自然语言处理(NLP)任务的重要工具。然而，当文档长度超过PLM的最大可接受长度时，将这些PLM应用于文档分类存在一个限制，因为在这些模型中会截断多余的部分。如果关键字在截断的部分，则模型的性能下降。为了解决这个问题，本文提出了一种带有自适应微调策略的分层BERT (HAdaBERT)。它由基于bert的局部编码器模型和基于注意力的门控记忆网络作为全局编码器组成。与直接截断文档的现有plm相比，所提出的模型使用文档的一部分作为区域，将输入文档划分到几个容器中。这允许本地编码器提取每个容器中的有用信息，并由全局编码器根据其对分类的贡献进行组合。为了进一步提高模型的性能，本文提出了一种自适应微调策略，该策略动态地决定需要微调的BERT层，而不是对每个输入文本的所有层进行微调。在不同语料库上的实验结果表明，该方法在文档分类方面优于现有的神经网络。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>文件中的重要信息可能会在不同的地方分发。句子之间的语义关系更加复杂和模糊，使得文档分类成为一项具有挑战性的任务。cnn在计算机视觉方面取得了成功，也被用于文档分类。假设文档中的每个token对分类的贡献不相等，自动对齐文本和强调重要token的过程、自注意力、动态路由已经被提出进一步提高cnn、GRU和LSTM网络的性能。此外，还提出了分层关注网络[15]用于文档分类，在句子级和文档级执行语义建模，然而这可能会导致token在句子上下文中的句法依赖性。</p>
+<p>最近，预训练语言模型： BERT、ALBERT [17] 、 RoBERTa [18]成功地完成了各种NLP任务。在处理下游任务时，这些plm消除了从头构建模型的需要，并且可以采用transformers，self-attention mechanisms利用迁移学习学习高质量的文本语境表征。通常，首先向plm提供大量未注释的数据，然后通过屏蔽语言模型或下一个句子预测进行训练，以学习各种单词的用法以及该语言的一般编写方式。然后，模型被转移到另一个任务，在那里它们被馈送到另一个较小的任务特定数据集。对于文档分类，输入序列可以很长，但BERT模型的最大输入长度在大多数情况下是有限的[20]。一旦文档超过预设的最大输入长度，这些文档的多余部分将被直接截断。最佳短语和强烈推荐短语中的强烈主观短语将被截断，这可能导致模型的错误分类。</p>
+<p>将BERT应用于文档分类的另一个明显问题是计算消耗。也就是说，随着输入序列长度的增加，对计算资源的需求急剧增加，因为微调每个变压器层的时间复杂度相对于输入长度呈指数增长。</p>
+<p>本文提出了带自适应微调策略的分层BERT模型 hierarchical BERT model with an adaptive fine-tuning strategy来解决上述问题。HAdaBERT模型由两个主要部分组成，以分层方式对文档表示进行建模，包括局部和全局编码器。考虑到文档具有自然的层次结构，即一个文档包含多个句子，每个句子包含多个单词，我们使用局部编码器学习句子级特征，而全局编码器将这些特征组合为最终表示。与现有的plm直接截断文档到最大输入长度相比，提议的HAdaBERT使用文档的一部分作为区域，而不是使用一个句子作为一个区域。我们引入了一个容器划分策略来获得有效的本地信息，从而保留语法依赖关系。这样，容器中的关键信息和会被提取到局部编码器。全局编码器使用基于注意力的门控记忆网络学习顺序组合容器之间的语法关系。通过在分层体系结构中使用这两种编码器，该模型可以有效地捕获长文档中的本地信息和长期依赖关系。此外，提出了一种针对每个输入样本的自适应微调策略，该策略网络可以自适应地选择最佳的BERT微调层，以提高模型在训练和推理过程中的性能。这种策略是一种自动的通用方法，可以扩展到其他预训练的语言模型。</p>
+<p>在多个语料库上进行了实证实验，包括AAPD、Reuters、IMDB和Yelp-2013数据集。对比结果表明，所提出的HAdaBERT模型在文档分类方面优于现有的几种神经网络。此外，该模型可以有效地解决以往文档分类方法的局限性。它也与现有的学习短句表示的模型竞争。另一个观察结果是，自适应微调策略通过动态选择微调层来实现最佳性能改进。</p>
+<p>本文的其余部分组织如下。第二节介绍和回顾了文献分类的相关工作。第3节描述了提出的分层BERT模型和自适应微调策略。对比实验在第4节中进行。最后，在第5部分得出结论</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>文档级分类是自然语言处理中的一项基本任务，也是一项具有挑战性的任务。本节简要回顾现有的文档级分类方法，包括传统的、分层的和预训练的神经网络。</p>
+<p>Conventional neural networks传统神经网络</p>
+<p>通常用于文档分类任务的深度神经网络模型有cnn[23-25]和rnn[9,26]。这些模型将文档表示为具有语义和语法信息的分布式表示。</p>
+<p>rnn中的梯度爆炸&#x2F;消失问题可能导致模型无法捕获长期依赖关系。为了解决这个问题，LSTM[29]和GRU[10]网络使用允许显式内存更新和传递的内存单元。这两种模型都学习上下文信息，这些信息有助于捕获长文本的语义。此外，Tai等[11]提出了一种根据依赖解析树合并语法信息的树- lstm网络。Zhou等人[30]提出了一种循环CNN (RCNN)模型，该模型扩展了现有的卷积层作为循环架构。Yang等人[4]提出了一种序列到序列模型，用于捕获多标签文档分类中多个标签之间的内在关系。此外，记忆网络[31-33]引入了一种类似于LSTM网络的存储单元的外部存储器，能够存储长文本的信息。</p>
+<p>引入了注意机制[12]来选择重要信息，从而提高模型的性能。注意机制能够捕获文本的重要信息，从而更好地学习文本表示，并且可以很好地与各种神经编码器配合使用。考虑到这种方法，Zheng等[37]提出了一种基于自交互关注的文档分类机制。注意机制有两个局限性。首先，它无法感知位置信息，导致无法学习句子内的高级语言特征，如表达的转变或递进表达。此外，当上下文中其他不太重要的单词数量增加时，在很长的文档中强调关键字可能会有困难，因为通过注意机制分配的关键字的权重会被稀释，并且在模型训练期间难以利用。</p>
+<p>Hierarchical neural networks层次神经网络</p>
+<p>近年来，层次神经网络[15,38]被广泛用于文档分类。为了获取句子间的句法信息，Tang等[38]设计了一种分层架构，使用CNN和LSTM网络结合词嵌入学习文档表示，然后采用GRU网络对文档内的句法信息进行编码。Xu等人[39]提出了一种缓存LSTM模型，该模型应用了一组具有不同遗忘门的LSTM细胞。遗忘率高的门可以学习局部特征，遗忘率低的门可以捕捉全局特征。为了将自注意机制扩展为层次结构，Yang等人[15]提出了一个在句子和文档两个层次上都有注意机制的层次模型。Yin等[42]将任务作为理解问题，提出了一种分层交互的基于注意力的模型来构建文档表示。此外，对于产品评论，一些研究证明，将情感信息与额外的特征(如用户和产品消息)结合起来，对于最终的极性分类是有用的[43-45]。</p>
+<p>Pretrained neural networks预训练神经网络</p>
+<p>通过使用自关注机制，transformer[19]不能直接使用GRU和LSTM网络的顺序结构，但是允许模型并行训练。为了进一步改进transformer，Gong等[46]提出了多头注意力算法，并将分层结构引入自注意力机制。但是，转换器可能会忽略文本的本地依赖关系和时间关系。随着序列长度的增加，变压器的存储和计算复杂度迅速增加。</p>
+<p>已经提出了几种用于文本分类的transformer预训练语言模型(plm)[16,47]。其基本思想是利用大量未标记的数据，通过无监督mask语言模型或下一句预测对语言模型进行预训练学习句法和语义信息，利用这种方法，Adhikari等[20]首先引入了BERT模型[16]，采用截断策略作为DocBERT进行文档分类，取得了良好的性能。Liu等[18]提出了RoBERTa，它使用快速微调的BERT训练程序，成功地使用分段预测进行文档分类，并显示出改进的结果,Lan等[17]提出了ALBERT模型，该模型引入了分解嵌入参数化和跨层参数共享两种参数约简技术，降低了内存消耗，提高了训练速度。</p>
+<p>对于文档分类，现有的plm受到输入长度的限制。使用截断策略时，模型会丢失一部分用于分类的信息，当重要的内容落在被截断的部分时，会产生深远的影响，降低文档分类模型的性能。另一个问题是，基于bert的模型的预训练和微调都会产生相当大的计算资源成本。随着输入长度的增加，消耗的资源急剧增加，注意力权重被稀释。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s1.ax1x.com/2023/07/29/pPSq6yV.png"></p>
+<h2 id="Hierarchical-BERT-with-adaptive-fine-tuning"><a href="#Hierarchical-BERT-with-adaptive-fine-tuning" class="headerlink" title="Hierarchical BERT with adaptive fine-tuning"></a>Hierarchical BERT with adaptive fine-tuning</h2><p>具有自适应微调的分层BERT</p>
+<p>它由两个主要部分组成，以分层方式对文档表示进行建模，<strong>包括本地和全局的编码器，输入文档首先被分成几个容器。在每个容器中，基于bert的模型被微调以提取高质量的局部特征。以连续的局部特征为输入，采用基于注意力的门控记忆网络作为全局编码器，学习容器间的长期依赖关系。</strong>提出的HAdaBERT模型可以有效地捕获局部和全局信息用于文档分类。</p>
+<p>微调BERT应用在局部编码，adaptive fine-tuning自适应调整BERT。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s1.ax1x.com/2023/07/29/pPSqdoQ.png"></p>
+<h3 id="local-encoder"><a href="#local-encoder" class="headerlink" title="local encoder"></a>local encoder</h3><p>对于每个给定的文档，将文档划分为v个容器，表示为D&#x3D; [r1,r2, . . . ,rv]。每个容器又由一系列的token组成，<br>$$<br>r_{i} &#x3D; [x_{i1},x_{i2},…,x_{ic}]<br>$$<br>其中c是容器的容量。在直观的区域划分策略中，将文档中的每个单独的句子作为一个区域。例如，由三个句子组成的文档有三个区域。这个简单的策略是非常不平衡的，因为一个大的句子长度边距，很长和很短的句子都出现在文档中。另一种简单的方法是将文档划分为固定长度的区域。这种策略破坏了文档中的语法关系，可能导致性能下降。</p>
+<p>容器策略：几个固定容量c的容器基于容器尽可能多的装句子的想法装载句子。我们依次将句子放入容器中，直到文本长度超过容量c。不够的用0值填充到c。值得注意的是，我们在每个相邻的容器之间建立了一个重叠句子。也就是说，前一个容器的最后一句话和下一个容器的第一句话是相同的。这可以有效地链接这两个容器，使它们不是相互独立的，并且保留了语法依赖性。</p>
+<p>为了提取每个容器中的局部特征，我们使用了预训练的语言模型BERT[16]。它在各种NLP任务中取得了令人印象深刻的表现。BERT由多层双向transformer编码器组成[19]，通过无监督学习进行预训练，使用屏蔽语言模型(屏蔽率为15%)或下一句预测。特别地，我们使用了<a target="_blank" rel="noopener" href="https://github.com/huggingface/transformers">uncase BERT-based1</a>模型，它包含12层transformers，隐藏大小为768。在每个容器中，首先在容器ri的开始和结束处分别添加两个特殊符号[CLS]和[SEP]。然后，我们将每个容器送入BERT模型以获得局部表示ti。<br>$$<br>t_{i}\in\mathbb{R}^{dt}<br>$$</p>
+<p>$$<br>t_{i}&#x3D;f_{BERT}([x_{i1},x_{i2},…,x_{ic}]:\theta _{BERT})<br>$$</p>
+<p>其中xi1, xi2，。， xic是第i个容器r中令牌的输入序列。θBERT是BERT模型的可训练参数，为所有容器共享，然后在模型训练时进行微调;dt&#x3D;768是局部表示的维数。</p>
+<h3 id="Global-encoder"><a href="#Global-encoder" class="headerlink" title="Global encoder"></a>Global encoder</h3><p>为了将所有局部特征顺序编码为文档表示，使用了基于注意力的门控记忆网络来捕获跨容器的远程依赖关系并对全局信息建模。[t1, t2, . . . , tv] as input，首先使用双向LSTM (BiLSTM)网络将局部表示映射到隐藏状态，表示为<br>$$<br>\underset{h_{i}}{\rightarrow} &#x3D; LSTM(\underset{h_{i-1}}{\rightarrow},t_{i})<br>$$</p>
+<p>$$<br>\underset{h_{i}}{\leftarrow} &#x3D; LSTM(\underset{h_{i+1}}{\leftarrow},t_{i})<br>$$</p>
+<p>$$<br>h_{i}&#x3D;[\underset{h_{i}}{\rightarrow} ,\underset{h_{i}}{\leftarrow}]<br>$$</p>
+<p>为了增强每个局部表示的信息，我们在BiLSTM的输入和输出之间添加残差连接，记为<br>$$<br>k_{i} &#x3D; h_{i}\oplus t_{i}<br>$$<br>ki表示局部特征，\oplus 表示相加。</p>
+<p>attention-based gated memory network （AGM）层。考虑到并非所有单词和句子对最终分类的贡献都是相同的，我们使用AGM层依次选择重要信息并将其整合到记忆中，以获得远距离关系并保留上下文信息。为了自动选择重要信息，我们使用自注意机制来学习每个局部表示ki的权重，其计算为<br>$$<br>e_{i} &#x3D; tanh(W_{e}k_{i}+b_{i})<br>$$</p>
+<p>$$<br>\alpha  &#x3D;\frac{exp(e_{i})}{\sum_{j&#x3D;1}^{|D|}exp(e_{j})}<br>$$</p>
+<p>其中，We和be分别表示与注意层相关的权重和偏差，αi是分配给第i个局部表示的权重。AGM层具有循环架构，这有点类似于内存网络。它使用记忆向量m∈R dm来记录局部表示中的重要信息，并使用门g来控制训练过程中需要保留或忘记的相关信息。AGM层的计算如下:<br>$$<br>g_{i}&#x3D;\sigma (W_{i}k_{i}+U_{g}m_{i-1})<br>$$</p>
+<p>$$<br>\hat{m}&#x3D;tanh(W_{h}k_{i}+g_{i}\odot U_{h}m_{i-1})<br>$$</p>
+<p>$$<br>m_{i}&#x3D;(1-\alpha_{i}\odot m_{i-1}+\alpha_{i}\odot m_{i})<br>$$<br>权重αi用来控制保留多少过去的信息和吸收多少新的信息。</p>
+<p>为了实现，我们应用了两个独立的AGM层对每一步序列的前向和后向信息进行建模。最后的记忆向量是AGM的两个方向的连接，它能够保存过去和未来的信息。我们将前向的最后一个记忆向量和后向的第一个记忆向量连接起来，生成用于最终分类的文档表示o。<br>$$<br>o&#x3D; [\underset{m_{v}}{\rightarrow},\underset{m_{1}}{\leftarrow}]<br>$$<br>给定训练数据集{Dn, yn}，分类是一个带有softmax函数的单层MLP。损失函数具有分类交叉熵</p>
+<h3 id="Adaptive-fine-tuning-strategy"><a href="#Adaptive-fine-tuning-strategy" class="headerlink" title="Adaptive fine-tuning strategy"></a>Adaptive fine-tuning strategy</h3><p>自适应微调策略</p>
+<p>对BERT中的所有层进行微调不一定会产生最佳性能。因此，我们使用policy network 选择BERT中需要在训练期间微调或冻结的层。等式1中BERT模型由L层transformer组成。<br>$$<br>f_{BERT}&#x3D;[T1,T2,…,TL]<br>$$<br>该policy network表示如下：<br>$$<br>policy(r)&#x3D;\left{s_{1},s_{2},…,s_{L}\right}, s_{i}\in \left{0,1 \right}<br>$$<br>如果si&#x3D;1则对第i层微调，si&#x3D;0则对第i层冻结。我们冻结了BERT中的原始的Ti，创建了一个新的可训练的层$$ \hat{Ti} $$。第i层的输出计算如下:<br>$$<br>d_{i} &#x3D;s_{i}\hat{T_{i}(d_{i-1})}+(1-s_{i}T_{i}(d_{i-1})),d_{i}表示第i个BERT层的输出<br>$$<br>policy network由三层transformer组成，容器r的embedding表示作为输入，s的计算如下：<br>$$<br>e_{i} &#x3D; Transformer(r),e_{i}只有两个元素<br>$$</p>
+<p>$$<br>s_{i}&#x3D;argmax(e_{i})<br>$$</p>
+<p>ei是logit分布，si是离散分布，离散数据导数不适用很难反向传播。于是用的Gumbel-Softmax 。</p>
+<p>Gumbel-Softmax是一种从离散数据中采样的方法一种允许定义离散分布的可微的近似抽样的形式的分布。GumbelSoftmax将离散值转换为连续值，从而在端到端反向传播时实现梯度计算和策略网络优化。具体的Gumbel-Softmax实现如下:<br>$$<br>s_{i}&#x3D;softmax(\frac{log(e_{i}+G_{i})}{\iota })，\iota 越小s_{i}就越接近onehot向量<br>$$</p>
+<p>$$<br>G_{i}&#x3D;-log(log(u_{i}))<br>$$</p>
+<p>Gi是一个随机变量服从独立的均匀分布。ui服从均匀分布U(0,1)</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>数据集</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s1.ax1x.com/2023/07/29/pPSOKCd.png"></p>
+<p>Dev是开发集也称为验证集，从训练集中分出一部分作为开发集，目的是用来选择模型，调整参数评估性能。</p>
+<p>几个Baseline模型：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s1.ax1x.com/2023/07/29/pPSORPJ.png"></p>
+<p>局部编码中容器容量c的影响：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s1.ax1x.com/2023/07/29/pPSOoqK.png"></p>
+<p>等实验说明了该模型的优越性。</p>
+<h2 id="未来"><a href="#未来" class="headerlink" title="未来"></a>未来</h2><p>未来的工作将探索更有效的局部编码器，并引入强化学习来研究更好的微调策略。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sandra-feng.github.io">Sandra_feng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sandra-feng.github.io/%E5%85%B7%E6%9C%89%E8%87%AA%E9%80%82%E5%BA%94%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5%E7%9A%84%E5%88%86%E5%B1%82BERT%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB.html">https://sandra-feng.github.io/%E5%85%B7%E6%9C%89%E8%87%AA%E9%80%82%E5%BA%94%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5%E7%9A%84%E5%88%86%E5%B1%82BERT%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sandra-feng.github.io" target="_blank">Sandra_feng personal blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></div><div class="post_share"><div class="social-share" data-image="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/ShareJS/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/ShareJS/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Bert%E5%BE%AE%E8%B0%83%E5%8F%8ABERT%E5%8F%98%E4%BD%93.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Bert微调及BERT变体</div></div></a></div><div class="next-post pull-right"><a href="/Revisiting-Transformer-based-Models-for-Long-Document-Classification%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdl.sunbangyan.cn/2023/08/31/fmo2dy.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Transformer-based Models for Long Document Classification论文阅读</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/Bert%E5%BE%AE%E8%B0%83%E5%8F%8ABERT%E5%8F%98%E4%BD%93.html" title="Bert微调及BERT变体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-01</div><div class="title">Bert微调及BERT变体</div></div></a></div><div><a href="/HAN-Hierarchy-Attention-Network-%E6%A8%A1%E5%9E%8B.html" title="HAN(Hierarchy Attention Network)模型及实现"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjaqfl.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-23</div><div class="title">HAN(Hierarchy Attention Network)模型及实现</div></div></a></div><div><a href="/Revisiting-Transformer-based-Models-for-Long-Document-Classification%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html" title="Transformer-based Models for Long Document Classification论文阅读"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdl.sunbangyan.cn/2023/08/31/fmo2dy.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-28</div><div class="title">Transformer-based Models for Long Document Classification论文阅读</div></div></a></div><div><a href="/TRIMOON%E5%9F%BA%E4%BA%8E%E4%B8%A4%E8%BD%AE%E4%B8%8D%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84%E5%81%87%E6%96%B0%E9%97%BB%E6%A3%80%E6%B5%8B%E5%A4%9A%E6%A8%A1%E6%80%81%E8%9E%8D%E5%90%88%E7%BD%91%E7%BB%9C.html" title="TRIMOON:基于两轮不一致性的假新闻检测多模态融合网络"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-30</div><div class="title">TRIMOON:基于两轮不一致性的假新闻检测多模态融合网络</div></div></a></div><div><a href="/bert%E5%90%84%E5%B1%82%E8%BE%93%E5%87%BA.html" title="bert各层输出"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">bert各层输出</div></div></a></div><div><a href="/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html" title="多模态大模型"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fmo90y.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-12</div><div class="title">多模态大模型</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2023/07/22/d87b3c27f25f5e68.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sandra_feng</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Sandra-feng"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是个静态网站演示</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B7%E6%9C%89%E8%87%AA%E9%80%82%E5%BA%94%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5%E7%9A%84%E5%88%86%E5%B1%82BERT%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">具有自适应微调策略的分层BERT，用于文档分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hierarchical-BERT-with-adaptive-fine-tuning"><span class="toc-number">1.4.</span> <span class="toc-text">Hierarchical BERT with adaptive fine-tuning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#local-encoder"><span class="toc-number">1.4.1.</span> <span class="toc-text">local encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-encoder"><span class="toc-number">1.4.2.</span> <span class="toc-text">Global encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adaptive-fine-tuning-strategy"><span class="toc-number">1.4.3.</span> <span class="toc-text">Adaptive fine-tuning strategy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.5.</span> <span class="toc-text">实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5"><span class="toc-number">1.6.</span> <span class="toc-text">未来</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/hello-world.html" title="Hello World"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdl.sunbangyan.cn/2023/08/31/fijnc2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/hello-world.html" title="Hello World">Hello World</a><time datetime="2024-01-18T12:01:14.142Z" title="发表于 2024-01-18 20:01:14">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90.html" title="科研工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="科研工具"/></a><div class="content"><a class="title" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90.html" title="科研工具">科研工具</a><time datetime="2024-01-18T06:04:21.000Z" title="发表于 2024-01-18 14:04:21">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html" title="多模态大模型"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fmo90y.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多模态大模型"/></a><div class="content"><a class="title" href="/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html" title="多模态大模型">多模态大模型</a><time datetime="2023-11-12T06:04:21.000Z" title="发表于 2023-11-12 14:04:21">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/bert%E5%90%84%E5%B1%82%E8%BE%93%E5%87%BA.html" title="bert各层输出"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="bert各层输出"/></a><div class="content"><a class="title" href="/bert%E5%90%84%E5%B1%82%E8%BE%93%E5%87%BA.html" title="bert各层输出">bert各层输出</a><time datetime="2023-10-30T06:04:21.000Z" title="发表于 2023-10-30 14:04:21">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%AE%89%E8%A3%85CLIP.html" title="安装CLIP库及数据集下载网站"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picss.sunbangyan.cn/2023/08/31/fjazzb.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装CLIP库及数据集下载网站"/></a><div class="content"><a class="title" href="/%E5%AE%89%E8%A3%85CLIP.html" title="安装CLIP库及数据集下载网站">安装CLIP库及数据集下载网站</a><time datetime="2023-10-30T06:04:21.000Z" title="发表于 2023-10-30 14:04:21">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Sandra_feng</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

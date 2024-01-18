@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>多模态大模型 | Sandra_feng personal blog</title><meta name="keywords" content="学习记录"><meta name="author" content="Sandra_feng"><meta name="copyright" content="Sandra_feng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="多模态大模型CLIP: 连接文本和图像的桥梁CLIP的英文全称是Contrastive Language-Image Pre-training，即一种基于对比文本-图像对的预训练方法或者模型。CLIP是一种基于对比学习的多模态模型。CLIP的训练数据是文本-图像对：一张图像和它对应的文本描述，这里希望通过对比学习，模型能够学习到文本-图像对的匹配关系。有两个 encoder，一个对应图片，一个对应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多模态大模型">
+<meta property="og:url" content="https://sandra-feng.github.io/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">
+<meta property="og:site_name" content="Sandra_feng personal blog">
+<meta property="og:description" content="多模态大模型CLIP: 连接文本和图像的桥梁CLIP的英文全称是Contrastive Language-Image Pre-training，即一种基于对比文本-图像对的预训练方法或者模型。CLIP是一种基于对比学习的多模态模型。CLIP的训练数据是文本-图像对：一张图像和它对应的文本描述，这里希望通过对比学习，模型能够学习到文本-图像对的匹配关系。有两个 encoder，一个对应图片，一个对应">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picst.sunbangyan.cn/2023/08/31/fmo90y.jpg">
+<meta property="article:published_time" content="2023-11-12T06:04:21.000Z">
+<meta property="article:modified_time" content="2023-11-12T06:04:21.000Z">
+<meta property="article:author" content="Sandra_feng">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picst.sunbangyan.cn/2023/08/31/fmo90y.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sandra-feng.github.io/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Sandra_feng","link":"链接: ","source":"来源: Sandra_feng personal blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '多模态大模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-12 14:04:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Sandra_feng personal blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2023/07/22/d87b3c27f25f5e68.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://picst.sunbangyan.cn/2023/08/31/fmo90y.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Sandra_feng personal blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">多模态大模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-12T06:04:21.000Z" title="发表于 2023-11-12 14:04:21">2023-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-12T06:04:21.000Z" title="更新于 2023-11-12 14:04:21">2023-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="多模态大模型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="多模态大模型"><a href="#多模态大模型" class="headerlink" title="多模态大模型"></a>多模态大模型</h1><h2 id="CLIP-连接文本和图像的桥梁"><a href="#CLIP-连接文本和图像的桥梁" class="headerlink" title="CLIP: 连接文本和图像的桥梁"></a>CLIP: 连接文本和图像的桥梁</h2><p>CLIP的英文全称是<strong>Contrastive Language-Image Pre-training</strong>，即<strong>一种基于对比文本-图像对的预训练方法或者模型</strong>。CLIP是一种基于对比学习的多模态模型。CLIP的训练数据是文本-图像对：一张图像和它对应的文本描述，这里希望通过对比学习，模型能够学习到文本-图像对的匹配关系。有两个 encoder，一个对应图片，一个对应文本，图像和文本经过各自的 encoder 后，通过简单的点乘来代表不同模态的交互（相似性）。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piGg0qH"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z1.ax1x.com/2023/11/12/piGg0qH.png" alt="piGg0qH.png"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># image_encoder - ResNet or Vision Transformer</span></span><br><span class="line"><span class="comment"># text_encoder - CBOW or Text Transformer</span></span><br><span class="line"><span class="comment"># I[n, h, w, c] - minibatch of aligned images</span></span><br><span class="line"><span class="comment"># T[n, l] - minibatch of aligned texts</span></span><br><span class="line"><span class="comment"># W_i[d_i, d_e] - learned proj of image to embed</span></span><br><span class="line"><span class="comment"># W_t[d_t, d_e] - learned proj of text to embed</span></span><br><span class="line"><span class="comment"># t - learned temperature parameter</span></span><br><span class="line"><span class="comment"># extract feature representations of each modality</span></span><br><span class="line">I_f = image_encoder(I) <span class="comment">#[n, d_i]</span></span><br><span class="line">T_f = text_encoder(T) <span class="comment">#[n, d_t]</span></span><br><span class="line"><span class="comment"># joint multimodal embedding [n, d_e]</span></span><br><span class="line">I_e = l2_normalize(np.dot(I_f, W_i), axis=<span class="number">1</span>)</span><br><span class="line">T_e = l2_normalize(np.dot(T_f, W_t), axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># scaled pairwise cosine similarities [n, n]</span></span><br><span class="line">logits = np.dot(I_e, T_e.T) * np.exp(t)</span><br><span class="line"><span class="comment"># symmetric loss function</span></span><br><span class="line">labels = np.arange(n)</span><br><span class="line">loss_i = cross_entropy_loss(logits, labels, axis=<span class="number">0</span>)</span><br><span class="line">loss_t = cross_entropy_loss(logits, labels, axis=<span class="number">1</span>)</span><br><span class="line">loss = (loss_i + loss_t)/<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="ALBEF：先对齐后融合"><a href="#ALBEF：先对齐后融合" class="headerlink" title="ALBEF：先对齐后融合"></a>ALBEF：先对齐后融合</h2><p>ALBEF 可以说是结合了单流模型与双流模型，其模型由图像编码器（image encoder）、文本编码器（text encoder）和 多模态编码器（multimodal encoder）组成，其中图像编码器采用的是VIT模型，而文本编码器、多模态编码器采用是一个12层的bert模型，其前6层作为文本编码器，后6层作为多模态编码器。图像编码器和文本编码器分别提到的特征可以用对比损失函数进行特征对齐，而后将图像特征和文本特征统一输入到多模态编码器，可以利用常用的MLM和ITM来进行预训练。在 ALBEF 之前，多模态方法通常使用 transformer 的多模态编码器来同时编码视觉和文本特征，由于目标检测器是提前训练好的，因此视觉和文本特征并不是对齐的。图像和文本特征可能距离很远，这使得多模态编码器难以学习到它们之间的交互。为了解决这个问题，ALBEF 通过一个对比损失（也<strong>就是 CLIP 中的 ITC 损失</strong>）在进行多模态交互之前对齐图像和文本数据。</p>
+<p>ITC（Image-Text Contrastive）损失函数的核心思想是，模型应该学会将图像和对应的描述性文本映射到特征空间中的相近点，同时将不相匹配的图像和文本映射到远离的点。这通常通过一个对比损失函数来实现，最常用的是InfoNCE损失，它是由一个softmax函数定义的。</p>
+<p>在CLIP模型中，一个batch中的每个图像都会和每个文本描述计算一个相似度分数。这些分数被组织成一个相似度矩阵。然后，对于每个图像，其与正确文本描述的相似度分数（即正样本）应该比与任何错误描述的分数（即负样本）都要高。</p>
+<p>以下是计算过程：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piGgDZd"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z1.ax1x.com/2023/11/12/piGgDZd.md.png" alt="piGgDZd.md.png"></a></p>
+<p><strong>ALBEF预训练任务</strong>分为图文对比（Image-Text Contrastive Learning）、.掩码建模（Masked Language Modeling）、.图文匹配（Image-Text Matching）三个任务。Masked Language Modeling 同时利用图像和上下文文本来预测mask词</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piGgrdA"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z1.ax1x.com/2023/11/12/piGgrdA.png" alt="piGgrdA.png"></a></p>
+<ul>
+<li>下面红色框其实就<strong>类似于 CLIP</strong>，双塔各自编码图像和文本，然后取 CLS 进行对比学习；</li>
+<li>上面蓝色框就是为了加强不同模态交互用的编码器（前面提到过 CLIP 内积的方式太简单了，这里就是<strong>加强多模态融合</strong>以适配更难的任务）；</li>
+<li>图像编码器 12 层，文本编码器 6 层，多模态编码器 6 层；其实右侧是将一个 12 层的文本编码器拆成了两部分，这是因为一些研究工作发现<strong>在多模态中需要更强的图像编码器</strong>，进行这样的拆分一定程度上保证了强图像 encoder 和弱文本 encoder，且保证了模型参数不过多的情况下融合图像和文本的信息。</li>
+</ul>
+<p>ALBEF总的训练目标就是这三个损失：L_{ITC}+ L_{MLM}+L_{ITM}</p>
+<p><strong>动量蒸馏</strong>的目的是通过在训练过程中引入一个额外的模型，即动量编码器，来增强模型学习到的特征对齐的稳定性和一致性。这个动量编码器是一个慢慢更新的模型版本，它提供了一个更加平滑和稳定的特征表示目标，帮助主模型更好地学习对齐特征。</p>
+<p><strong>动量 (Momentum)</strong></p>
+<p>在这个上下文中，“动量”通常指的是模型参数更新的一种方法，该方法在更新参数时结合了过去的参数。具体来说，在动量方法中，模型的参数更新不仅取决于当前梯度，还取决于之前梯度的累积。这种方法可以看作是物理中动量的概念的应用，有助于模型参数在优化过程中更平滑地移动，从而减少震荡并加速收敛。</p>
+<p>在ALBEF的架构中，动量更新通常应用于动量模型（Momentum Model），该模型是主模型的一个影子副本。动量模型的参数是通过应用动量系数（�<em>β</em>）对主模型参数的指数加权移动平均得到的。这意味着动量模型的更新慢于主模型，因此可以提供更稳定的表示供主模型在训练过程中学习。</p>
+<p>在提供的图中，动量更新部分对应于图中右侧的“momentum update”箭头，它指向动量模型（Momentum Model）。</p>
+<p><strong>蒸馏 (Distillation)</strong></p>
+<p>“蒸馏”在机器学习中通常指知识蒸馏（Knowledge Distillation），这是一种模型压缩技术，其中一个较大或较复杂的模型（称为教师模型）的知识被转移到一个较小或较简单的模型（称为学生模型）。在ALBEF模型的上下文中，蒸馏被用来将动量模型的平滑和稳定的表示传递给主模型，以提高训练的质量和稳定性。</p>
+<p>在蒸馏过程中，主模型被训练以模仿动量模型的输出。这样做的原因是动量模型的输出更加平滑和一致，因此它可以作为一个好的目标，引导主模型在特征空间中正确对齐图像和文本。</p>
+<p>ALBEF的使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载预训练的ALBEF模型</span></span><br><span class="line">model = load_pretrained_albef_model()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行预处理</span></span><br><span class="line">preprocessed_images = preprocess_images(raw_images)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对文本进行预处理</span></span><br><span class="line">preprocessed_texts = preprocess_texts(raw_texts)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取图像和文本的特征表示</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    image_features = model.image_encoder(preprocessed_images)</span><br><span class="line">    text_features = model.text_encoder(preprocessed_texts)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于需要融合特征的任务，可以进一步处理</span></span><br><span class="line">multimodal_features = model.multimodal_encoder(image_features, text_features)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用提取的特征进行下游任务</span></span><br><span class="line"><span class="keyword">for</span> task_data <span class="keyword">in</span> downstream_task_dataset:</span><br><span class="line">    features = extract_features(task_data, model)  <span class="comment"># 根据任务提取相应的特征</span></span><br><span class="line">    predictions = downstream_model(features)  <span class="comment"># 可能需要一个额外的下游模型</span></span><br><span class="line">    <span class="comment"># 进行任务相关的处理，例如计算损失，进行反向传播等</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="BLIP：统一理解和生成的自举多模态模型"><a href="#BLIP：统一理解和生成的自举多模态模型" class="headerlink" title="BLIP：统一理解和生成的自举多模态模型"></a>BLIP：统一理解和生成的自举多模态模型</h2><p><a target="_blank" rel="noopener" href="https://imgse.com/i/piGgsII"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z1.ax1x.com/2023/11/12/piGgsII.png" alt="piGgsII.png"></a></p>
+<p>虽然有三个模型，但是大部分参数都是共享的。</p>
+<ul>
+<li>左一为 Image Encoder（图像编码器）：该组件使用 Vision Transformer（ViT）对图像进行编码，将全局图像特征表示为一个额外的[CLS]标记。</li>
+<li>左二为 Text Encoder，采用了 BERT 的结构，提取文本特征用于与视觉特征计算 ITC loss。Text Encoder 不与视觉特征计算交叉注意力。</li>
+<li>左三为 Image-grounded Text Encoder（基于图像的文本编码器），该组件通过在每个 Transformer 块的自注意力（Self-Attention）层和前馈神经网络（Feed Forward Network）之间插入一个交叉注意力（Cross-Attention）层，将视觉信息注入到文本编码中，提取文本特征用于计算 ITM 损失。</li>
+<li>左四为 Imagegrounded Text Decoder（基于图像的文本解码器），用于进行 LM 语言建模训练（<strong>这里不再是用 MLM 了</strong>），生成与图像相关的文本描述。</li>
+<li>三个文本编解码器分别为在文本前添加 [CLS]、[Encode]、[Decode] token</li>
+<li>与 ALBEF 一样，同样采用动量模型为 ITC 生成伪标签；使用 ITC 为 ITM 进行难负例挖掘。</li>
+</ul>
+<p>BLIP 的训练流程</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piGggRf"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z1.ax1x.com/2023/11/12/piGggRf.md.png" alt="piGggRf.md.png"></a></p>
+<p><strong>字幕器 Captioner：</strong>给一张网络图片，生成字幕。它是一个视觉文本解码器，在 COCO 数据集上使用 LM 目标函数微调。给定网络图片  ，Captioner 生成字幕 。</p>
+<p><strong>过滤器 Filter：</strong>过滤掉噪声图文对。它是一个视觉文本编码器，看文本是否与图像匹配，在 COCO 数据集上使用 ITC 和 ITM 目标函数微调。Filter 删除原始 Web 文本 和合成文本 中的嘈杂文本，如果 ITM 头将其预测为与图像不匹配，则认为文本有噪声。</p>
+<p>最后，将过滤后的图像-文本对与人工注释对相结合，形成一个新的数据集，作者用它来预训练一个新的模型。以此来过滤掉噪声信息。</p>
+<h2 id="CoCa（Contrastive-Captioners）视觉-语言联合表示"><a href="#CoCa（Contrastive-Captioners）视觉-语言联合表示" class="headerlink" title="CoCa（Contrastive Captioners）视觉-语言联合表示"></a>CoCa（Contrastive Captioners）视觉-语言联合表示</h2><ol>
+<li><strong>模型架构</strong>： CoCa模型通常包括一个图像编码器和一个文本编码器，这两个编码器可以是基于Transformer的架构，如Vision Transformer (ViT) 用于图像编码，BERT或GPT用于文本编码。</li>
+<li><strong>多模态学习</strong>： 在预训练阶段，CoCa模型使用大量的图像-文本配对数据来学习这两种模态之间的相互关系。通过对比学习和自回归语言建模相结合的方式，模型被训练来理解图像内容和相应的文本描述。</li>
+<li><strong>对比学习</strong>： CoCa模型使用对比学习来确保图像和相应的文本在特征空间中被拉近，而不匹配的图像和文本被推远。这通常涉及到计算正负样本对之间的相似性，并通过对比损失函数来优化。</li>
+<li><strong>自回归语言建模</strong>： 为了更好地理解和生成文本，CoCa模型还包括一个自回归语言模型组件，它预测文本序列中的下一个词，以学习文本的内部结构。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piGg2z8"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z1.ax1x.com/2023/11/12/piGg2z8.md.png" alt="piGg2z8.md.png"></a></p>
+<p>使用coca获取多模态表示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> CoCaModel, CoCaTokenizer</span><br><span class="line"></span><br><span class="line">model = CoCaModel.from_pretrained(<span class="string">&#x27;coca-base&#x27;</span>)</span><br><span class="line">tokenizer = CoCaTokenizer.from_pretrained(<span class="string">&#x27;coca-base&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设你有一个图像处理函数和文本处理函数</span></span><br><span class="line">processed_images = image_preprocessing(your_images)</span><br><span class="line">processed_texts = tokenizer(your_texts, padding=<span class="literal">True</span>, truncation=<span class="literal">True</span>, return_tensors=<span class="string">&quot;pt&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取多模态表示</span></span><br><span class="line">outputs = model(input_ids=processed_texts[<span class="string">&#x27;input_ids&#x27;</span>], pixel_values=processed_images)</span><br><span class="line">multimodal_representation = outputs.pooler_output</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用多模态表示进行下游任务</span></span><br><span class="line">downstream_model = SomeDownstreamTaskModel()</span><br><span class="line">predictions = downstream_model(multimodal_representation)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 微调模型</span></span><br><span class="line">outputs = model(input_ids=processed_texts[<span class="string">&#x27;input_ids&#x27;</span>], pixel_values=processed_images, labels=your_labels)</span><br><span class="line">loss = outputs.loss</span><br><span class="line">loss.backward()</span><br><span class="line">optimizer.step()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>它是使用<strong>对比损失</strong>和<strong>文本生成损失</strong>进行训练，也就是使用了 ITC 和 LM loss；这里没有使用 ITM loss，<strong>减少了模型参数每次迭代所需前向传播的次数</strong>，从而降低了训练时间。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sandra-feng.github.io">Sandra_feng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sandra-feng.github.io/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">https://sandra-feng.github.io/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sandra-feng.github.io" target="_blank">Sandra_feng personal blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></div><div class="post_share"><div class="social-share" data-image="https://picst.sunbangyan.cn/2023/08/31/fmo90y.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/ShareJS/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/ShareJS/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">科研工具</div></div></a></div><div class="next-post pull-right"><a href="/bert%E5%90%84%E5%B1%82%E8%BE%93%E5%87%BA.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">bert各层输出</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/Bert%E5%BE%AE%E8%B0%83%E5%8F%8ABERT%E5%8F%98%E4%BD%93.html" title="Bert微调及BERT变体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-01</div><div class="title">Bert微调及BERT变体</div></div></a></div><div><a href="/HAN-Hierarchy-Attention-Network-%E6%A8%A1%E5%9E%8B.html" title="HAN(Hierarchy Attention Network)模型及实现"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjaqfl.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-23</div><div class="title">HAN(Hierarchy Attention Network)模型及实现</div></div></a></div><div><a href="/Revisiting-Transformer-based-Models-for-Long-Document-Classification%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html" title="Transformer-based Models for Long Document Classification论文阅读"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdl.sunbangyan.cn/2023/08/31/fmo2dy.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-28</div><div class="title">Transformer-based Models for Long Document Classification论文阅读</div></div></a></div><div><a href="/TRIMOON%E5%9F%BA%E4%BA%8E%E4%B8%A4%E8%BD%AE%E4%B8%8D%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84%E5%81%87%E6%96%B0%E9%97%BB%E6%A3%80%E6%B5%8B%E5%A4%9A%E6%A8%A1%E6%80%81%E8%9E%8D%E5%90%88%E7%BD%91%E7%BB%9C.html" title="TRIMOON:基于两轮不一致性的假新闻检测多模态融合网络"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-30</div><div class="title">TRIMOON:基于两轮不一致性的假新闻检测多模态融合网络</div></div></a></div><div><a href="/bert%E5%90%84%E5%B1%82%E8%BE%93%E5%87%BA.html" title="bert各层输出"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">bert各层输出</div></div></a></div><div><a href="/%E5%85%B7%E6%9C%89%E8%87%AA%E9%80%82%E5%BA%94%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5%E7%9A%84%E5%88%86%E5%B1%82BERT%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB.html" title="具有自适应微调策略的分层BERT，用于文档分类"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-29</div><div class="title">具有自适应微调策略的分层BERT，用于文档分类</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2023/07/22/d87b3c27f25f5e68.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sandra_feng</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Sandra-feng"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是个静态网站演示</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">多模态大模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CLIP-%E8%BF%9E%E6%8E%A5%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.1.</span> <span class="toc-text">CLIP: 连接文本和图像的桥梁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALBEF%EF%BC%9A%E5%85%88%E5%AF%B9%E9%BD%90%E5%90%8E%E8%9E%8D%E5%90%88"><span class="toc-number">1.2.</span> <span class="toc-text">ALBEF：先对齐后融合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLIP%EF%BC%9A%E7%BB%9F%E4%B8%80%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E7%9A%84%E8%87%AA%E4%B8%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">BLIP：统一理解和生成的自举多模态模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CoCa%EF%BC%88Contrastive-Captioners%EF%BC%89%E8%A7%86%E8%A7%89-%E8%AF%AD%E8%A8%80%E8%81%94%E5%90%88%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.4.</span> <span class="toc-text">CoCa（Contrastive Captioners）视觉-语言联合表示</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/hello-world.html" title="Hello World"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdl.sunbangyan.cn/2023/08/31/fijnc2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/hello-world.html" title="Hello World">Hello World</a><time datetime="2024-01-18T12:01:14.142Z" title="发表于 2024-01-18 20:01:14">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90.html" title="科研工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picdm.sunbangyan.cn/2023/08/31/fjavr4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="科研工具"/></a><div class="content"><a class="title" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90.html" title="科研工具">科研工具</a><time datetime="2024-01-18T06:04:21.000Z" title="发表于 2024-01-18 14:04:21">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html" title="多模态大模型"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fmo90y.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多模态大模型"/></a><div class="content"><a class="title" href="/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html" title="多模态大模型">多模态大模型</a><time datetime="2023-11-12T06:04:21.000Z" title="发表于 2023-11-12 14:04:21">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/bert%E5%90%84%E5%B1%82%E8%BE%93%E5%87%BA.html" title="bert各层输出"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picst.sunbangyan.cn/2023/08/31/fijsmq.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="bert各层输出"/></a><div class="content"><a class="title" href="/bert%E5%90%84%E5%B1%82%E8%BE%93%E5%87%BA.html" title="bert各层输出">bert各层输出</a><time datetime="2023-10-30T06:04:21.000Z" title="发表于 2023-10-30 14:04:21">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%AE%89%E8%A3%85CLIP.html" title="安装CLIP库及数据集下载网站"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://picss.sunbangyan.cn/2023/08/31/fjazzb.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装CLIP库及数据集下载网站"/></a><div class="content"><a class="title" href="/%E5%AE%89%E8%A3%85CLIP.html" title="安装CLIP库及数据集下载网站">安装CLIP库及数据集下载网站</a><time datetime="2023-10-30T06:04:21.000Z" title="发表于 2023-10-30 14:04:21">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Sandra_feng</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
